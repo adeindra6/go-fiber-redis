@@ -1,5 +1,7 @@
 package main
 
+import "encoding/json"
+
 type User struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
@@ -28,4 +30,14 @@ type Company struct {
 	Name        string `json:"name"`
 	CatchPhrase string `json:"catchPhrase"`
 	Bs          string `json:"bs"`
+}
+
+func toJson(val []byte) User {
+	user := User{}
+	err := json.Unmarshal(val, &user)
+	if err != nil {
+		panic(err)
+	}
+
+	return user
 }
